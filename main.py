@@ -38,3 +38,14 @@ async def get_all_movies(offset: int,limit: int=5):
         return None
     return all_movies[start_index:end_index]
 
+
+
+@app.get("/movies/genre/{genre}")
+async def get_all_movies(genre :GenreEnum):
+    all_movies=list(movies_list.values())
+    genre_movies=[]
+    for movie in all_movies:
+       if  movie['genre']==genre.value:
+           genre_movies.append(movie)
+    return genre_movies
+
